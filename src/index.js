@@ -1,13 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ContactsOutlined, ThreeSixtySharp } from '@material-ui/icons';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Control from './control';
+
+class Controller extends React.Component{    
+  constructor(props){
+      super(props);
+      this.state = {
+          login : false,
+      }
+      this.isLogin = this.isLogin.bind(this);
+      this.isLogout = this.isLogout.bind(this);
+  }
+
+  componentDidMount(){}
+  componentWillUnmount(){}
+
+  isLogin(){
+    this.setState({login:true});
+  }
+  isLogout(){
+    this.setState({login:false});
+  }
+
+  getLoginStatus(){
+    return this.state.login;
+  }
+
+  render(){
+    return(
+        <Control
+            isLogin = {this.isLogin}
+            isLogout = {this.isLogout}
+            LoginStatus = {this.getLoginStatus()}
+        />
+    );
+  }
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Controller />,
   document.getElementById('root')
 );
 
